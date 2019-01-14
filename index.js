@@ -1,24 +1,43 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const EloRating = require("elo-rating");
-const KittenContenders = require("./contenders/kitten-contenders");
-const FrameworkContenders = require("./contenders/web-framework-contenders");
 
-
-const opponents = FrameworkContenders;
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-/**
- * {winnerId: *, loserId: *}
- */
-app.post('/update-rating', (req, res) => {
+
+const contenders = {
+    1: {
+        name: "React",
+        rating: 1000,
+        thumbnailUrl: "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png",
+        snippetUrls: [
+            "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
+        ]
+    },
+    2: {
+        name: "Sap UI 5",
+        rating: 1000,
+        thumbnailUrl: "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png",
+        snippetUrls: [
+            "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png"
+        ]
+    }
+};
+
+
+app.get('/contenders', (req, res) => {
+    res.send(JSON.stringify(contendersSortedByRating(contenders)));
+});
+
+
+app.post('/round/result', (req, res) => {
     const { winnerId, loserId } = req.body;
 
-    const winner = opponents[winnerId];
-    const loser = opponents[loserId];
+    const winner = contenders[winnerId];
+    const loser = contenders[loserId];
 
     const { playerRating, opponentRating } = EloRating.calculate(
         winner.rating,
@@ -27,35 +46,32 @@ app.post('/update-rating', (req, res) => {
     );
 
     winner.rating = playerRating;
-    opponentRating.rating = opponentRating;
+    loser.rating = opponentRating;
 
-    res.send(JSON.stringify(opponents));
+    res.send(JSON.stringify(contendersSortedByRating(contenders)));
 });
 
-app.get('/contenders', (req, res) => {
-    res.send(JSON.stringify(opponents));
-});
 
-app.get('/next-round', (req, res) => {
-    const { firstId, secondId } = twoDifferentRandomIdsInRange(1, 10);
+app.get('/round/new', (req, res) => {
+    const { firstId, secondId } = twoDifferentRandomIdsInRange(1, 2);
+
+    const contender1 = contenders[firstId];
+    const contender2 = contenders[secondId];
 
     const nextRound = {
-        opponent1: {
-            id: firstId,
-            imageUrl: opponents[firstId].imageUrl
+        sample1: {
+            contenderId: firstId,
+            imageUrl: pickRandomElement(contender1.snippetUrls)
         },
-        opponent2: {
-            id: secondId,
-            imageUrl: opponents[secondId].imageUrl
+        sample2: {
+            contenderId: secondId,
+            imageUrl: pickRandomElement(contender2.snippetUrls)
         }
     };
 
     res.send(JSON.stringify(nextRound));
 });
 
-app.get('/leaderboard', (req, res) => {
-    res.send(JSON.stringify(opponentsSortedByRating(opponents)));
-});
 
 app.listen(3000, () => {
     console.log('Game server listening on port 3000!');
@@ -74,10 +90,7 @@ const randomIntInRange = (min, max) => {
         throw "Invalid arguments: max <= min.";
     }
 
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    const result = Math.floor(Math.random() * (max - min)) + min;
-    return result;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 /**
@@ -103,11 +116,16 @@ const twoDifferentRandomIdsInRange = (min, max) => {
     return { firstId, secondId };
 };
 
-const opponentsSortedByRating = opponents => Object.entries(opponents)
+const pickRandomElement = list => list[Math.floor(Math.random() * list.length)];
+
+
+const contendersSortedByRating = opponents => Object.entries(opponents)
     .map(entry => {
         return {
             id: entry[0],
-            ...entry[1]
+            name: entry[1].name,
+            rating: entry[1].rating,
+            thumbnailUrl: entry[1].thumbnailUrl
         };
     })
     .sort((opponent1, opponent2) => opponent2.rating - opponent1.rating);
