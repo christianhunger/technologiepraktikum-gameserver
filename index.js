@@ -14,7 +14,7 @@ const contenders = {
         rating: 1000,
         imageUrl: "http://127.0.0.1:3000/frameworks/logos/react-logo.png",
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
+            "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png"
         ]
     },
     2: {
@@ -22,7 +22,7 @@ const contenders = {
         rating: 1000,
         imageUrl: "http://127.0.0.1:3000/frameworks/logos/ui5-logo.png",
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png"
+            "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
         ]
     }
 };
