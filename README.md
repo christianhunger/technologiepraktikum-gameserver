@@ -1,20 +1,20 @@
 # API-Dokumentation
 
-### GET /ratings
+### `GET` /contenders
 
 #### Antwort
 
 ```
 [
-    { "contenderId": 1, "rating": 1021, "thumbnailUrl": "http://..." },
-    { "contenderId": 2, "rating": 877, "thumbnailUrl": "http://..." },
-    { "contenderId": 42, "rating": 1420, "thumbnailUrl": "http://..." },
-    { "contenderId": 1337, "rating": 2076, "thumbnailUrl": "http://..." }
+    { "id": 1, "name": "React", "rating": 1021, "thumbnailUrl": "http://..." },
+    { "id": 2, "name: "jQuery", "rating": 877, "thumbnailUrl": "http://..." },
+    { "id": 42, "name": "Sap UI5", "rating": 1420, "thumbnailUrl": "http://..." },
+    { "id": 1337, "name": "Vue.js", "rating": 2076, "thumbnailUrl": "http://..." }
 ]
 ```
 
 
-### GET /round/new
+### `GET` /round/new
 
 #### Antwort
 
@@ -22,16 +22,16 @@
 {
     "contender1": {
         "contenderId": 1337,
-        "sampleImageUrl": "http://.."
+        "imageUrl": "http://.."
     },
     "contender2": {
         "contenderId": 2,
-        "sampleImageUrl": "http://..."
+        "imageUrl": "http://..."
     }
 }
 ```
 
-### POST /round/result
+### `POST` /round/result
 
 #### Payload
 
@@ -44,4 +44,4 @@
 
 #### Antwort
 
-Die aktuellen Ratings (siehe `/ratings`).
+Die aktuellen Ratings aller Teilnehmer (siehe `GET /contenders`).
