@@ -7,10 +7,10 @@
 
 ```
 [
-    { "id": 1337, "name": "Vue.js", "rating": 2076, "thumbnailUrl": "http://..." },
-    { "id": 42, "name": "Sap UI5", "rating": 1420, "thumbnailUrl": "http://..." },
-    { "id": 1, "name": "React", "rating": 1021, "thumbnailUrl": "http://..." },
-    { "id": 2, "name: "jQuery", "rating": 877, "thumbnailUrl": "http://..." },
+    { "id": 1337, "name": "Vue.js", "rating": 2076, "imageUrl": "http://..." },
+    { "id": 42, "name": "Sap UI5", "rating": 1420, "imageUrl": "http://..." },
+    { "id": 1, "name": "React", "rating": 1021, "imageUrl": "http://..." },
+    { "id": 2, "name: "jQuery", "rating": 877, "imageUrl": "http://..." },
 ]
 ```
 
@@ -24,11 +24,11 @@ Die Liste ist absteigend sortiert nach dem aktuellen *Rating.*
 {
     "sample1": {
         "contenderId": 1337,
-        "imageUrl": "http://.."
+        "sampleUrl": "http://.."
     },
     "sample2": {
         "contenderId": 2,
-        "imageUrl": "http://..."
+        "sampleUrl": "http://..."
     }
 }
 ```

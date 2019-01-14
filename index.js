@@ -12,7 +12,7 @@ const contenders = {
     1: {
         name: "React",
         rating: 1000,
-        thumbnailUrl: "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png",
+        imageUrl: "http://127.0.0.1:3000/frameworks/logos/react-logo.png",
         snippetUrls: [
             "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
         ]
@@ -20,7 +20,7 @@ const contenders = {
     2: {
         name: "Sap UI 5",
         rating: 1000,
-        thumbnailUrl: "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png",
+        imageUrl: "http://127.0.0.1:3000/frameworks/logos/ui5-logo.png",
         snippetUrls: [
             "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png"
         ]
@@ -61,11 +61,11 @@ app.get('/round/new', (req, res) => {
     const nextRound = {
         sample1: {
             contenderId: firstId,
-            imageUrl: pickRandomElement(contender1.snippetUrls)
+            sampleUrl: pickRandomElement(contender1.snippetUrls)
         },
         sample2: {
             contenderId: secondId,
-            imageUrl: pickRandomElement(contender2.snippetUrls)
+            sampleUrl: pickRandomElement(contender2.snippetUrls)
         }
     };
 
@@ -125,7 +125,7 @@ const contendersSortedByRating = opponents => Object.entries(opponents)
             id: entry[0],
             name: entry[1].name,
             rating: entry[1].rating,
-            thumbnailUrl: entry[1].thumbnailUrl
+            imageUrl: entry[1].imageUrl
         };
     })
     .sort((opponent1, opponent2) => opponent2.rating - opponent1.rating);
