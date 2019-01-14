@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const EloRating = require("elo-rating");
-const KittenOpponents = require("./kitten-testdata");
+const KittenContenders = require("./contenders/kitten-contenders");
+const FrameworkContenders = require("./contenders/web-framework-contenders");
 
 
-const opponents = KittenOpponents;
+const opponents = FrameworkContenders;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 /**
  * {winnerId: *, loserId: *}
@@ -30,7 +32,7 @@ app.post('/update-rating', (req, res) => {
     res.send(JSON.stringify(opponents));
 });
 
-app.get('/opponents', (req, res) => {
+app.get('/contenders', (req, res) => {
     res.send(JSON.stringify(opponents));
 });
 
