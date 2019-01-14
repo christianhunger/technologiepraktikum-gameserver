@@ -24,6 +24,30 @@ const contenders = {
         snippetUrls: [
             "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
         ]
+    },
+    3: {
+        name: "Vue.js",
+        rating: 1000,
+        imageUrl: "http://127.0.0.1:3000/frameworks/logos/vuejs-logo.png",
+        snippetUrls: [
+            "http://127.0.0.1:3000/frameworks/snippets/vuejs-snippet-1.png"
+        ]
+    },
+    4: {
+        name: "jQuery",
+        rating: 1000,
+        imageUrl: "http://127.0.0.1:3000/frameworks/logos/jquery-logo.png",
+        snippetUrls: [
+            "http://127.0.0.1:3000/frameworks/snippets/jquery-snippet-1.png"
+        ]
+    },
+    5: {
+        name: "Angular",
+        rating: 1000,
+        imageUrl: "http://127.0.0.1:3000/frameworks/logos/angular-logo.png",
+        snippetUrls: [
+            "http://127.0.0.1:3000/frameworks/snippets/angular-snippet-1.png"
+        ]
     }
 };
 
@@ -53,7 +77,7 @@ app.post('/round/result', (req, res) => {
 
 
 app.get('/round/new', (req, res) => {
-    const { firstId, secondId } = twoDifferentRandomIdsInRange(1, 2);
+    const { firstId, secondId } = twoDifferentRandomIdsInRange(1, 5);
 
     const contender1 = contenders[firstId];
     const contender2 = contenders[secondId];
