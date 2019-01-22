@@ -1,6 +1,10 @@
 # API-Dokumentation
 
+Für das Technologiepraktikum ist eine Instanz des Gameservers unter ``http://node.cloud.dmwe.de`` erreichbar.
+
 ### `GET` /contenders
+
+Eine Liste aller Contenders absteigend sortiert nach ihrem aktuellen *Rating*. Das verknüpfte Bild kann für das Leaderboard und den Ranking Strip verwendet werden.
 
 #### Antwort
 
@@ -14,9 +18,9 @@
 ]
 ```
 
-Die Liste ist absteigend sortiert nach dem aktuellen *Rating.* 
-
 ### `GET` /round/new
+
+Zufälliges Pairing aus allen Contenders für eine neue Spielrunde. Es kann mehrere Samples (Codeschnipsel) pro Contender geben.
 
 #### Antwort
 
@@ -34,6 +38,8 @@ Die Liste ist absteigend sortiert nach dem aktuellen *Rating.*
 ```
 
 ### `POST` /round/result
+
+Ergebnis einer Spielrunde an den Server schicken. Dieser aktualisiert daraufhin die Ratings und liefert den aktuellen Stand zurück.
 
 #### Payload
 
