@@ -2,51 +2,59 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const EloRating = require("elo-rating");
 
+// this could probably be dynamic
+const serverAndPort = '127.0.0.1:3000';
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// add cors headers
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const contenders = {
     1: {
         name: "React",
         rating: 1000,
-        imageUrl: "http://127.0.0.1:3000/frameworks/logos/react-logo.png",
+        imageUrl: `http://${serverAndPort}/frameworks/logos/react-logo.png`,
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/react-snippet-1.png"
+            `http://${serverAndPort}/frameworks/snippets/react-snippet-1.png`
         ]
     },
     2: {
         name: "Sap UI 5",
         rating: 1000,
-        imageUrl: "http://127.0.0.1:3000/frameworks/logos/ui5-logo.png",
+        imageUrl: `http://${serverAndPort}/frameworks/logos/ui5-logo.png`,
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/sap-ui-snippet-1.png"
+            `http://${serverAndPort}/frameworks/snippets/sap-ui-snippet-1.png`
         ]
     },
     3: {
         name: "Vue.js",
         rating: 1000,
-        imageUrl: "http://127.0.0.1:3000/frameworks/logos/vuejs-logo.png",
+        imageUrl: `http://${serverAndPort}/frameworks/logos/vuejs-logo.png`,
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/vuejs-snippet-1.png"
+            `http://${serverAndPort}/frameworks/snippets/vuejs-snippet-1.png`
         ]
     },
     4: {
         name: "jQuery",
         rating: 1000,
-        imageUrl: "http://127.0.0.1:3000/frameworks/logos/jquery-logo.png",
+        imageUrl: `http://${serverAndPort}/frameworks/logos/jquery-logo.png`,
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/jquery-snippet-1.png"
+            `http://${serverAndPort}/frameworks/snippets/jquery-snippet-1.png`
         ]
     },
     5: {
         name: "Angular",
         rating: 1000,
-        imageUrl: "http://127.0.0.1:3000/frameworks/logos/angular-logo.png",
+        imageUrl: `http://${serverAndPort}/frameworks/logos/angular-logo.png`,
         snippetUrls: [
-            "http://127.0.0.1:3000/frameworks/snippets/angular-snippet-1.png"
+            `http://${serverAndPort}/frameworks/snippets/angular-snippet-1.png`
         ]
     }
 };
@@ -96,10 +104,12 @@ app.get('/round/new', (req, res) => {
     res.send(JSON.stringify(nextRound));
 });
 
-
-app.listen(3000, () => {
-    console.log('Game server listening on port 3000!');
-});
+if (module === require.main) {
+    const server = app.listen(process.env.PORT || 3000, () => {
+        const port = server.address().port;
+        console.log(`Game server listening on port ${port}!`);
+    });
+}
 
 /**
  * Geenrates a random integer id in the range [min, max].
