@@ -22,7 +22,10 @@ const contenders = {
         rating: 1000,
         imageUrl: `http://${serverAndPort}/frameworks/logos/react-logo.png`,
         snippetUrls: [
-            `http://${serverAndPort}/frameworks/snippets/react-snippet-1.png`
+            `http://${serverAndPort}/frameworks/snippets/react-snippet-1.png`,
+            `http://${serverAndPort}/frameworks/snippets/react-snippet-2.png`,
+            `http://${serverAndPort}/frameworks/snippets/react-snippet-3.png`,
+            `http://${serverAndPort}/frameworks/snippets/react-snippet-4.png`
         ]
     },
     2: {
@@ -30,7 +33,9 @@ const contenders = {
         rating: 1000,
         imageUrl: `http://${serverAndPort}/frameworks/logos/ui5-logo.png`,
         snippetUrls: [
-            `http://${serverAndPort}/frameworks/snippets/sap-ui-snippet-1.png`
+            `http://${serverAndPort}/frameworks/snippets/sap-ui-snippet-1.png`,
+            `http://${serverAndPort}/frameworks/snippets/sap-ui-snippet-2.png`,
+            `http://${serverAndPort}/frameworks/snippets/sap-ui-snippet-3.png`
         ]
     },
     3: {
@@ -38,7 +43,9 @@ const contenders = {
         rating: 1000,
         imageUrl: `http://${serverAndPort}/frameworks/logos/vuejs-logo.png`,
         snippetUrls: [
-            `http://${serverAndPort}/frameworks/snippets/vuejs-snippet-1.png`
+            `http://${serverAndPort}/frameworks/snippets/vuejs-snippet-1.png`,
+            `http://${serverAndPort}/frameworks/snippets/vuejs-snippet-2.png`,
+            `http://${serverAndPort}/frameworks/snippets/vuejs-snippet-3.png`
         ]
     },
     4: {
@@ -46,7 +53,9 @@ const contenders = {
         rating: 1000,
         imageUrl: `http://${serverAndPort}/frameworks/logos/jquery-logo.png`,
         snippetUrls: [
-            `http://${serverAndPort}/frameworks/snippets/jquery-snippet-1.png`
+            `http://${serverAndPort}/frameworks/snippets/jquery-snippet-1.png`,
+            `http://${serverAndPort}/frameworks/snippets/jquery-snippet-2.png`,
+            `http://${serverAndPort}/frameworks/snippets/jquery-snippet-3.png`
         ]
     },
     5: {
@@ -54,7 +63,10 @@ const contenders = {
         rating: 1000,
         imageUrl: `http://${serverAndPort}/frameworks/logos/angular-logo.png`,
         snippetUrls: [
-            `http://${serverAndPort}/frameworks/snippets/angular-snippet-1.png`
+            `http://${serverAndPort}/frameworks/snippets/angular-snippet-1.png`,
+            `http://${serverAndPort}/frameworks/snippets/angular-snippet-2.png`,
+            `http://${serverAndPort}/frameworks/snippets/angular-snippet-3.png`,
+            `http://${serverAndPort}/frameworks/snippets/angular-snippet-4.png`
         ]
     }
 };
